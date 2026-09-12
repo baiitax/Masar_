@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { promises as fs } from "fs";
 import path from "path";
+import { ensureSchema, insertEvent } from "@/lib/db";
 
 export const runtime = "nodejs";
 
@@ -26,6 +27,11 @@ export async function POST(request) {
     const dir = path.join(process.cwd(), ".data");
     await fs.mkdir(dir, { recursive: true });
     await fs.appendFile(path.join(dir, "events.jsonl"), JSON.stringify(safe) + "\n", "utf8").catch(() => {});
+    try {
+      if (await ensureSchema()) await insertEvent(safe);
+    } catch {
+      // Analytics must never break the experience.
+    }
   } catch {
     // Analytics must never break the experience.
   }

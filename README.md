@@ -121,10 +121,14 @@ Editorial articles and dossiers carry author, sources, last-reviewed dates and d
 - Security headers are set in `next.config.mjs`; the security page describes controls accurately
   without claiming unverified certifications.
 
-### Production backend wiring (recommended, not required to run)
+### Production backend wiring
 
-1. Replace `.data` persistence with PostgreSQL/Supabase tables mirroring the lead record
-   (`reference, type, source, page, lang, payload, scoring, assignedTeam, status, receivedAt`).
+1. **Implemented (Phase 0):** `lib/db.js` persists leads, funnel events and upload metadata to
+   Postgres (Neon serverless driver) in `leads` / `events` / `documents` tables mirroring the lead
+   record (`reference, type, source, page, lang, payload, scoring, assigned_team, status,
+   received_at`). When `DATABASE_URL`/`POSTGRES_URL` is absent (local dev) the git-ignored
+   `.data` JSONL store is used as fallback. `GET /api/health` reports db connectivity without
+   exposing data. Connect the Neon Marketplace resource on Vercel to inject `DATABASE_URL`.
 2. Move document storage to a private bucket with signed, short-lived URLs and server-side
    antivirus/content scanning.
 3. Add authenticated CSRF tokens for logged-in portal sessions and a turnkey bot provider if needed.

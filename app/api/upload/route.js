@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { promises as fs } from "fs";
 import path from "path";
 import { rateLimit } from "@/lib/leads";
+import { ensureSchema, insertDocument } from "@/lib/db";
 
 export const runtime = "nodejs";
 
@@ -65,6 +66,13 @@ export async function POST(request) {
     const safe = `${Date.now()}-${name.replace(/[^a-z0-9._-]/gi, "_").slice(-80)}`;
     await fs.writeFile(path.join(dir, safe), buf);
     stored.push({ field, name: safe, size: file.size });
+    try {
+      if (await ensureSchema()) {
+        await insertDocument({ reference, field, name: safe, size: file.size, mime: file.type || "" });
+      }
+    } catch {
+      // Metadata mirroring must never break the upload UX.
+    }
   }
 
   return NextResponse.json({ ok: true, stored: stored.length });
