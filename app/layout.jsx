@@ -5,6 +5,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Tracker from "@/components/Tracker";
 import LangNotice from "@/components/LangNotice";
+import Preloader from "@/components/Preloader";
+import NavProgress from "@/components/NavProgress";
 import { OrganizationSchema, WebSiteSchema } from "@/components/schema";
 import { SITE, SITE_URL } from "@/lib/site";
 
@@ -76,6 +78,8 @@ export default function RootLayout({ children }) {
         <WebSiteSchema />
       </head>
       <body className={`${inter.variable} ${jakarta.variable} ${arabic.variable}`}>
+        <Preloader />
+        <NavProgress />
         <AppProvider>
           <div className="app-bg" aria-hidden="true" />
           <div className="app-grid" aria-hidden="true" />

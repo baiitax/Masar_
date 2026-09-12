@@ -446,15 +446,98 @@
   inset: 0;
   background: linear-gradient(
       to bottom,
-      color-mix(in srgb, var(--bg) 58%, transparent),
-      color-mix(in srgb, var(--bg) 78%, transparent) 48%,
-      var(--bg) 98%
+      color-mix(in srgb, rgb(var(--bg)) 58%, transparent),
+      color-mix(in srgb, rgb(var(--bg)) 78%, transparent) 48%,
+      rgb(var(--bg)) 98%
     ),
     linear-gradient(
       to right,
-      color-mix(in srgb, var(--bg) 70%, transparent),
+      color-mix(in srgb, rgb(var(--bg)) 70%, transparent),
       transparent 62%
     );
+}
+
+/* First-load preloader overlay (rendered on every page via root layout) */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(var(--bg));
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+.preloader-hide {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.preloader-logo {
+  animation: preloader-pulse 1.6s ease-in-out infinite;
+}
+@keyframes preloader-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+.preloader-rail {
+  position: relative;
+  width: 168px;
+  height: 2px;
+  margin-inline: auto;
+  border-radius: 99px;
+  background: rgb(var(--line) / 0.15);
+  overflow: hidden;
+}
+.preloader-rail span {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(230, 190, 94, 0.95), transparent);
+  background-size: 50% 100%;
+  background-repeat: no-repeat;
+  animation: rail-flow 1.6s linear infinite;
+}
+
+/* Route-transition progress bar (active on every internal navigation) */
+.nav-progress {
+  position: fixed;
+  top: 0;
+  inset-inline: 0;
+  height: 3px;
+  z-index: 95;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.nav-progress::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #c2994b, #e6be5e);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+}
+.nav-progress-active {
+  opacity: 1;
+}
+.nav-progress-active::before {
+  animation: nav-progress 1.3s cubic-bezier(0.3, 0.7, 0.4, 0.95) infinite;
+}
+@keyframes nav-progress {
+  0% {
+    transform: scaleX(0);
+  }
+  60% {
+    transform: scaleX(0.72);
+  }
+  100% {
+    transform: scaleX(1);
+  }
 }
 
 /* Thin scrollbars for horizontal rails */
