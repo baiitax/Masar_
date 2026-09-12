@@ -38,12 +38,22 @@ export default function HomePage() {
     <>
       {/* 1 — HERO */}
       <header className="relative overflow-hidden pb-16 pt-32 sm:pt-40">
+        <div aria-hidden="true" className="hero-media absolute inset-0">
+          <Image
+            src="/images/origin-nigeria.jpg"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+        </div>
         <div
           aria-hidden="true"
           className="pointer-events-none absolute -top-32 end-[-10%] h-[620px] w-[620px] rounded-full opacity-60"
           style={{ background: "radial-gradient(circle, rgba(30,81,166,0.18), transparent 65%)" }}
         />
-        <Container>
+        <Container className="relative">
           <div className="grid items-center gap-12 lg:grid-cols-[1.02fr_0.98fr]">
             <div>
               <Reveal>
@@ -103,6 +113,28 @@ export default function HomePage() {
 
           <Reveal delay={0.2}>
             <StageRail stages={H.rail} className="mt-12" note={t("common.illustrative")} />
+          </Reveal>
+          <Reveal delay={0.24} className="mt-6">
+            <div className="glass flex flex-col gap-3 rounded-2xl px-6 py-4 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex items-start gap-3 sm:items-center">
+                <span className="flex h-9 w-9 flex-none items-center justify-center rounded-lg bg-gold-500/12 text-gold-500">
+                  <Icon name="bank" size={17} />
+                </span>
+                <p className="text-sm leading-6 text-muted">
+                  <span className="font-bold text-ink">{t("backed.label")}</span>
+                  {" — "}
+                  {t("backed.text")}
+                </p>
+              </div>
+              <a
+                href="https://kgmlimited.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex flex-none items-center gap-1.5 text-sm font-semibold text-gold-500 hover:underline"
+              >
+                kgmlimited.com <Icon name="arrow" size={14} className="rtl:rotate-180" />
+              </a>
+            </div>
           </Reveal>
         </Container>
       </header>
@@ -165,6 +197,12 @@ export default function HomePage() {
             </ul>
           </Reveal>
           <Reveal delay={0.1}>
+            <ImageFrame
+              src="/images/port-logistics.jpg"
+              alt="Container port at night along the trade corridor: gantry cranes and a loaded vessel under a deep navy sky."
+              caption={t("captions.breaks")}
+              className="mb-6"
+            />
             <div className="glass-strong sticky top-28 h-fit rounded-2xl p-8">
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gold-500/12 text-gold-500">
                 <Icon name="route" size={24} />
@@ -395,6 +433,15 @@ export default function HomePage() {
             </Reveal>
           ))}
         </div>
+        <Reveal delay={0.1} className="mt-8">
+          <ImageFrame
+            src="/images/cold-chain-jeddah.jpg"
+            alt="Refrigerated cold-chain containers at a Saudi distribution hub on arrival."
+            caption={t("captions.release")}
+            ratio="21/9"
+            sizes="(max-width: 768px) 100vw, 1200px"
+          />
+        </Reveal>
         <Reveal className="mt-8">
           <Link href="/transactions" className="group inline-flex items-center gap-2 text-sm font-semibold text-gold-500">
             {t("nav.sub.transactions")}
@@ -467,6 +514,68 @@ export default function HomePage() {
             </GlassCard>
           </Reveal>
         </div>
+      </Section>
+
+      {/* 14b — LEADERSHIP */}
+      <Section className="!py-20">
+        <Reveal>
+          <Eyebrow>{t("leadership.eyebrow")}</Eyebrow>
+          <h2 className="h-display text-3xl font-bold text-ink sm:text-[2.6rem]">{t("leadership.title")}</h2>
+        </Reveal>
+        <div className="mt-10 grid gap-4 lg:grid-cols-2">
+          <Reveal>
+            <GlassCard level={4} className="h-full !p-7">
+              <div className="flex items-center gap-4">
+                <div className="relative h-16 w-16 flex-none overflow-hidden rounded-2xl border border-gold-500/40">
+                  <Image
+                    src="/images/team/ceo.jpg"
+                    alt="Portrait of Lukman Suleiman Kura, Chief Executive Officer of MASAR."
+                    fill
+                    sizes="64px"
+                    className="object-cover"
+                  />
+                </div>
+                <div>
+                  <h3 className="font-display text-lg font-bold text-ink">Lukman Suleiman Kura</h3>
+                  <p className="mt-0.5 text-sm font-medium text-gold-500">{t("leadership.ceoRole")}</p>
+                </div>
+              </div>
+              <blockquote className="mt-6 border-s-2 border-gold-500/50 ps-4 text-[0.95rem] leading-7 text-ink/90">
+                “{t("leadership.ceoQuote")}”
+              </blockquote>
+              <p className="mt-4 text-xs leading-5 text-muted">{t("leadership.ceoMeta")}</p>
+            </GlassCard>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <GlassCard level={4} className="h-full !p-7">
+              <div className="flex items-center gap-4">
+                <div className="relative h-16 w-16 flex-none overflow-hidden rounded-2xl border border-gold-500/40">
+                  <Image
+                    src="/images/team/cto.jpg"
+                    alt="Portrait of Mujahid Yakub Baita, Chief Technology Officer of MASAR."
+                    fill
+                    sizes="64px"
+                    className="object-cover"
+                  />
+                </div>
+                <div>
+                  <h3 className="font-display text-lg font-bold text-ink">Mujahid Yakub Baita</h3>
+                  <p className="mt-0.5 text-sm font-medium text-gold-500">{t("leadership.ctoRole")}</p>
+                </div>
+              </div>
+              <blockquote className="mt-6 border-s-2 border-gold-500/50 ps-4 text-[0.95rem] leading-7 text-ink/90">
+                “{t("leadership.ctoQuote")}”
+              </blockquote>
+              <p className="mt-4 text-xs leading-5 text-muted">{t("leadership.ctoMeta")}</p>
+            </GlassCard>
+          </Reveal>
+        </div>
+        <Reveal delay={0.12}>
+          <p className="mt-5 text-xs text-muted">
+            {t("leadership.source")}{" · "}
+            {t("backed.label")} — {t("backed.text")}
+          </p>
+        </Reveal>
       </Section>
 
       {/* 15 — TRADE INTELLIGENCE */}

@@ -100,6 +100,17 @@ export default function Footer() {
         <p className="mt-4 max-w-3xl text-[0.68rem] leading-5 text-muted/60">
           {t("footer.locationsNote")}
         </p>
+        <p className="mt-2 max-w-3xl text-[0.68rem] leading-5 text-muted/60">
+          {t("backed.label")} — {t("backed.text")}{" "}
+          <a
+            href="https://kgmlimited.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-gold-500"
+          >
+            kgmlimited.com
+          </a>
+        </p>
       </div>
     </footer>
   );

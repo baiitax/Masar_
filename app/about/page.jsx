@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { pageMeta } from "@/lib/seo";
 import {
   Container,
@@ -47,6 +48,46 @@ const PRESENCE = [
   { city: "Riyadh", role: "Buyer network & compliance", state: "Developing" },
   { city: "Lagos", role: "Origin operations", state: "Developing" },
   { city: "Kano", role: "Exporter network", state: "Developing" },
+];
+
+const TEAM = [
+  {
+    img: "/images/team/ceo.jpg",
+    alt: "Portrait of Lukman Suleiman Kura, Chief Executive Officer of MASAR.",
+    name: "Lukman Suleiman Kura",
+    role: "Chief Executive Officer · Founder & CEO, KGM Limited",
+    exp: "20+ years experience",
+    quote:
+      "Building businesses. Developing markets. Connecting opportunities across Africa and Saudi Arabia.",
+    bio:
+      "Nigerian business development and commercial strategy executive with more than 20 years across MTN Nigeria, Airtel Nigeria, ntel, FETS and 9 Payment Service Bank; former Chief Commercial Officer and Managing Director of TSAT/Thuraya; Saudi-based business consultant and partner at First Class Refreshments Ltd (FCR). M.Sc. Economics, Nasarawa State University; B.Sc. Geography, Bayero University Kano.",
+    tags: [
+      "Executive & Commercial Leadership",
+      "Business Development",
+      "Telecommunications & Digital Connectivity",
+      "Fintech",
+      "Nigeria–Saudi Arabia Business Relations",
+      "International Market Development",
+    ],
+  },
+  {
+    img: "/images/team/cto.jpg",
+    alt: "Portrait of Mujahid Yakub Baita, Chief Technology Officer of MASAR.",
+    name: "Mujahid Yakub Baita",
+    role: "Chief Technology Officer · Head of Technology, KGM Limited",
+    exp: "10+ years in technology services",
+    quote:
+      "Technology is the rail: verification, compliance and evidence, engineered into one network both continents can trust.",
+    bio:
+      "Senior full-stack developer with over 10 years in technology services, architecting end-to-end web platforms, APIs and digital products; specialist in AI automation pipelines, senior prompt engineering, UI/UX design and technology-to-growth consultancy.",
+    tags: [
+      "Full Stack Engineering",
+      "AI Automation Engineering",
+      "Senior Prompt Engineering",
+      "UI/UX Design",
+      "Business Consultancy",
+    ],
+  },
 ];
 
 export default function AboutPage() {
@@ -160,6 +201,73 @@ export default function AboutPage() {
             </Reveal>
           ))}
         </div>
+      </Section>
+
+      <Section>
+        <Reveal>
+          <SectionHeader
+            eyebrow="Leadership"
+            title="The team behind MASAR."
+            lead="MASAR is led by the leadership of Kurra Greenfield Merchants Limited (KGM), its backing company — pairing two decades of Nigeria–Saudi commercial leadership with deep full-stack, AI and product engineering."
+          />
+        </Reveal>
+        <div className="mt-10 grid gap-4 lg:grid-cols-2">
+          {TEAM.map((m, i) => (
+            <Reveal key={m.name} delay={i * 0.06}>
+              <GlassCard level={4} className="h-full !p-8">
+                <div className="flex items-center gap-5">
+                  <div className="relative h-24 w-24 flex-none overflow-hidden rounded-2xl border border-gold-500/40">
+                    <Image src={m.img} alt={m.alt} fill sizes="96px" className="object-cover" />
+                  </div>
+                  <div>
+                    <h3 className="font-display text-xl font-bold text-ink">{m.name}</h3>
+                    <p className="mt-1 text-sm font-medium text-gold-500">{m.role}</p>
+                    <p className="mt-1 text-xs text-muted">{m.exp}</p>
+                  </div>
+                </div>
+                <blockquote className="mt-6 border-s-2 border-gold-500/50 ps-4 text-sm leading-7 text-ink/90">
+                  “{m.quote}”
+                </blockquote>
+                <p className="mt-5 text-sm leading-7 text-muted">{m.bio}</p>
+                <ul className="mt-5 flex flex-wrap gap-2">
+                  {m.tags.map((tag) => (
+                    <li
+                      key={tag}
+                      className="rounded-full border border-line/15 bg-line/[0.05] px-3 py-1 text-xs font-medium text-muted"
+                    >
+                      {tag}
+                    </li>
+                  ))}
+                </ul>
+              </GlassCard>
+            </Reveal>
+          ))}
+        </div>
+        <Reveal delay={0.1} className="mt-6">
+          <div className="glass-strong flex flex-col gap-5 rounded-2xl p-8 sm:flex-row sm:items-center">
+            <IconBadge name="bank" />
+            <div className="flex-1">
+              <p className="eyebrow">Backed by KGM Limited</p>
+              <p className="mt-2 text-sm leading-7 text-muted">
+                Kurra Greenfield Merchants Limited (est. 2018) is a Nigerian multi-service
+                conglomerate recognized for designing, deploying and managing large-scale digital
+                payment ecosystems, government revenue platforms and sustainable infrastructure
+                projects.
+              </p>
+            </div>
+            <a
+              href="https://kgmlimited.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex flex-none items-center gap-1.5 text-sm font-semibold text-gold-500 hover:underline"
+            >
+              kgmlimited.com <Icon name="arrow" size={14} className="rtl:rotate-180" />
+            </a>
+          </div>
+        </Reveal>
+        <Reveal>
+          <p className="mt-4 text-xs text-muted">Leadership profiles sourced from kgmlimited.com/about.</p>
+        </Reveal>
       </Section>
 
       <Section>

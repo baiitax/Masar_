@@ -329,6 +329,29 @@ const fr = {
       cta: "Partenariats avec MASAR",
     },
   },
+  captions: {
+    breaks: "Logistique portuaire le long du corridor — illustration.",
+    release: "Manutention sous chaîne du froid à l'arrivée en Arabie saoudite — illustration.",
+  },
+  leadership: {
+    eyebrow: "Direction",
+    title: "Les responsables du rail.",
+    ceoRole: "Directeur Général · Fondateur & CEO de KGM Limited",
+    ceoQuote:
+      "La fiabilité est le produit. Vingt ans à bâtir des marchés entre le Nigéria et le Royaume m'ont appris une chose : le commerce suit la confiance, et la confiance suit la preuve. MASAR existe pour que chaque expédition porte sa propre preuve.",
+    ceoMeta:
+      "Plus de 20 ans dans les télécoms, la fintech et le développement des marchés Nigéria–Arabie saoudite · Ancien Directeur Général de TSAT/Thuraya",
+    ctoRole: "Directeur de la Technologie · Head of Technology, KGM Limited",
+    ctoQuote:
+      "MASAR est un réseau technologique autant qu'un corridor commercial. Vérification, conformité et preuve s'exécutent sur des rails programmables — pour que des partenaires de deux continents se branchent, interopèrent et fassent confiance au même registre.",
+    ctoMeta:
+      "Plus de 10 ans à livrer des plateformes full-stack, de l'automatisation IA et de l'ingénierie produit à grande échelle",
+    source: "Profils : kgmlimited.com/about",
+  },
+  backed: {
+    label: "Soutenu par KGM Limited",
+    text: "Kurra Greenfield Merchants Ltd — conglomérat nigérian multiservices (fondé en 2018) actif dans les écosystèmes de paiement numérique, les plateformes de revenus publics et les infrastructures.",
+  },
 };
 
 export default fr;
