@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
-import { dbAvailable, dbPing, ensureSchema, leadExists } from "@/lib/db";
+import { dbAvailable, dbPing, ensureSchema, leadExists, schemaVersion } from "@/lib/db";
 
 export const runtime = "nodejs";
 
 /**
- * Liveness + database connectivity check. Exposes no data:
+ * Liveness + database connectivity + migration state. Exposes no data:
  * the optional ?probe=MAS-YYYY-XXXXXXX parameter returns only a boolean
  * existence answer for a reference of that exact shape.
  */
@@ -15,6 +15,7 @@ export async function GET(request) {
   if (dbAvailable()) {
     const ready = await ensureSchema();
     out.db = ready ? await dbPing() : false;
+    out.version = await schemaVersion();
     if (probe && /^MAS-\d{4}-[A-Z]{7}$/.test(probe)) {
       try {
         out.probe = await leadExists(probe);
