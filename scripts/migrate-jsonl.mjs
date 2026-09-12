@@ -23,7 +23,8 @@ if (!url) {
   process.exit(1);
 }
 
-const sql = neon(url);
+const raw = neon(url);
+const sql = (q, params) => raw.query(q, params);
 
 async function main() {
   const leadsFile = path.join(process.cwd(), ".data", "leads.jsonl");
