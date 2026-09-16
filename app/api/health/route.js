@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { dbAvailable, dbPing, ensureSchema, leadExists, schemaVersion } from "@/lib/db";
+import { dbAvailable, dbPing, ensureSchema, leadExists, schemaVersion, bootstrapError } from "@/lib/db";
 
 export const runtime = "nodejs";
 
@@ -16,6 +16,9 @@ export async function GET(request) {
     const ready = await ensureSchema();
     out.db = ready ? await dbPing() : false;
     out.version = await schemaVersion();
+    if (new URL(request.url).searchParams.get("debug") === "1" && !ready) {
+      out.error = bootstrapError();
+    }
     if (probe && /^MAS-\d{4}-[A-Z]{7}$/.test(probe)) {
       try {
         out.probe = await leadExists(probe);
