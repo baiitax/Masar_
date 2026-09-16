@@ -18,7 +18,7 @@ export async function POST(request) {
     return NextResponse.json({ ok: false, error: "Malformed request" }, { status: 400 });
   }
   const { reference, status } = body || {};
-  if (!/^MAS-\d{4}-[A-Z]{7}$/.test(String(reference || "")) || !STATUSES.includes(status)) {
+  if (!/^MAS-\d{4}-[A-Z0-9]{7}$/.test(String(reference || "")) || !STATUSES.includes(status)) {
     return NextResponse.json({ ok: false, error: "Invalid reference or status." }, { status: 422 });
   }
   if (!(await ensureSchema()) || !(await leadExists(reference))) {

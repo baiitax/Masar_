@@ -36,7 +36,7 @@ export async function POST(request) {
 
   const reference = String(form.get("reference") || "");
   const field = String(form.get("field") || "documents").replace(/[^a-z0-9_-]/gi, "");
-  if (!/^MAS-\d{4}-[A-Z]{7}$/.test(reference)) {
+  if (!/^MAS-\d{4}-[A-Z0-9]{7}$/.test(reference)) {
     return NextResponse.json({ ok: false, error: "Invalid reference" }, { status: 400 });
   }
 

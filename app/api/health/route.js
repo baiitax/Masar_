@@ -16,7 +16,7 @@ export async function GET(request) {
     const ready = await ensureSchema();
     out.db = ready ? await dbPing() : false;
     out.version = await schemaVersion();
-    if (probe && /^MAS-\d{4}-[A-Z]{7}$/.test(probe)) {
+    if (probe && /^MAS-\d{4}-[A-Z0-9]{7}$/.test(probe)) {
       try {
         out.probe = await leadExists(probe);
       } catch {

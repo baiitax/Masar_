@@ -2,6 +2,10 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { getSession, opsConfigured } from "@/lib/ops-auth";
 
+// Env-dependent guard must run per request, never from a build-time static
+// prerender (env is absent during `next build`).
+export const dynamic = "force-dynamic";
+
 export const metadata = { title: "MASAR Ops Portal", robots: { index: false, follow: false } };
 
 export default function OpsLayout({ children }) {
